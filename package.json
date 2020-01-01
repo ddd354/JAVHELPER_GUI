@@ -1,0 +1,45 @@
+{
+  "name": "jav_helper",
+  "version": "0.0.2",
+  "description": "",
+  "main": "electron.js",
+  "scripts": {
+    "ele-start": "./node_modules/.bin/electron .",
+    "package": "npm run -s package-python && npm run -s package-electron && npm run -s package-cleanup",
+    "package-python": "pyinstaller --onedir --noconfirm --add-data JavHelper/templates:JavHelper/templates --add-data JavHelper/static:JavHelper/static --exclude-module FixTk --exclude-module tcl --exclude-module tk --exclude-module _tkinter --exclude-module tkinter --exclude-module Tkinter JavHelper/run.py --distpath dist-python",
+    "package-electron": "electron-builder",
+    "package-cleanup": "rm -rf build && rm -rf run.spec && rm -rf dist-python"
+  },
+  "build": {
+    "appId": "com.electron-flask.jav_helper",
+    "productName": "JavHelper",
+    "asar": false,
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "electron.js",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "dist-python/",
+        "to": "app/dist-python",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "^6.0.10",
+    "electron-builder": "^21.2.0"
+  },
+  "dependencies": {
+    "ps-tree": "^1.2.0",
+    "sleep": "^6.1.0"
+  }
+}
