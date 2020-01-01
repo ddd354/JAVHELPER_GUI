@@ -82,7 +82,7 @@ const createMainWindow = () => {
   });
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   // Load the index page
   mainWindow.loadURL("http://127.0.0.1:5000/");
@@ -128,7 +128,7 @@ app.on("activate", () => {
     startPythonSubprocess();
   }
   if (mainWindow === null) {
-    createWindow();
+    createMainWindow();
   }
 });
 

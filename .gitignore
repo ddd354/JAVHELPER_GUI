@@ -2,3 +2,4 @@ build
 dist
 JavHelper/static/nv
 node_modules
+dist-python
